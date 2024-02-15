@@ -1,0 +1,209 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizza</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="pizza">
+        <div class="container">
+            <h1 class="title">Pizza</h1>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <img src="img/pizza1.jpg" alt="pizza-3" />
+                        <div class="card-body">
+                            <p>Pizza Name1</p>
+                            <p>$8</p>
+                            <input type="radio" class="radio-button" name="price-pizza" value="pizza1"
+                                onclick="price()" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="img/pizza2.jpg" alt="pizza-3" />
+                        <div class="card-body">
+                            <p>Pizza Name2</p>
+                            <p>$10</p>
+                            <input type="radio" class="radio-button" name="price-pizza" value="pizza2"
+                                onclick="price()" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="img/pizza3.jpg" alt="pizza-3" />
+                        <div class="card-body">
+                            <p>Pizza Name3</p>
+                            <p>$12</p>
+                            <input type="radio" class="radio-button" name="price-pizza" value="pizza3"
+                                onclick="price()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="size">
+        <div class="container">
+            <h1 class="title">Size</h1>
+            <div class="radio-group">
+                <div class="radio">
+                    <input type="radio" name="size" value="small" onclick="price()" />
+                    <label>Small</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="size" value="medium" onclick="price()" />
+                    <label>Medium</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="size" value="large" onclick="price()" />
+                    <label>Large</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topping">
+        <div class="container">
+            <div class="topping-group">
+                <h1 class="title">Toppings</h1>
+                <table align="center">
+                    <tr>
+                        <td><input type="checkbox" name="topping" value="avocado|1" onclick="price()" />Avocado</td>
+                        <td><input type="checkbox" name="topping" value="lobster|2" onclick="price()" />Lobster</td>
+                        <td><input type="checkbox" name="topping" value="bacon|3" onclick="price()" /> Bacon</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="topping" value="broccoli|1" onclick="price()" />Broccoli</td>
+                        <td><input type="checkbox" name="topping" value="oyster|2" onclick="price()" />Oyster</td>
+                        <td><input type="checkbox" name="topping" value="duck|3" onclick="price()" />Duck</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="topping" value="onions|1" onclick="price()" /> Onions</td>
+                        <td><input type="checkbox" name="topping" value="salmon|2" onclick="price()" />Salmon</td>
+                        <td><input type="checkbox" name="topping" value="ham|3" onclick="price()" /> Ham</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="topping" value="zucchini|1" onclick="price()" /> Zucchini</td>
+                        <td><input type="checkbox" name="topping" value="tuna|2" onclick="price()" /> Tuna</td>
+                        <td><input type="checkbox" name="topping" value="sausage|3" onclick="price()" />Sausage</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="price">
+        <div class="container">
+            <h1 class="title">Price</h1>
+            <p id="price">$0</p>
+
+        </div>
+    </div>
+    <script>
+        var pizza = document.getElementsByName('price-pizza');
+        var topping = document.getElementsByName('topping');
+        var size = document.getElementsByName('size');
+
+        function topping_pizza1_disabled() {
+            var pizza1 = ['lobster', 'oyster', 'salmon', 'bacon', 'duck', 'sausage'];
+            for (let i = 0; i < topping.length; i++) {
+                topping[i].disabled = false;
+                for (let j = 0; j < pizza1.length; j++) {
+                    if ((topping[i].value).split('|', 1) == pizza1[j]) {
+                        topping[i].checked = false;
+                        topping[i].disabled = true;
+                    }
+                }
+            }
+        }
+        function topping_pizza2_disabled() {
+            var pizza2 = ['avocado', 'tuna', 'duck', 'sausage'];
+            for (let i = 0; i < topping.length; i++) {
+                topping[i].disabled = false;
+                for (let j = 0; j < pizza2.length; j++) {
+                    if ((topping[i].value).split('|', 1) == pizza2[j]) {
+                        topping[i].checked = false;
+                        topping[i].disabled = true;
+                    }
+                }
+            }
+        }
+        function topping_pizza3_disabled() {
+            var pizza3 = ['avocado', 'lobster', 'oyster', 'salmon'];
+            for (let i = 0; i < topping.length; i++) {
+                topping[i].disabled = false;
+                for (let l = 0; l < pizza3.length; l++) {
+                    if ((topping[i].value).split('|', 1) == pizza3[l]) {
+                        topping[i].checked = false;
+                        topping[i].disabled = true;
+                    }
+                }
+            }
+        }
+        function price() {
+            var selected_pizza;
+            var topping_price = [];
+            let pizza_price = 0;
+            let selected_topping = 0;
+            let selected_size;
+
+            //disabled topping depend on pizza
+            //set price pizza
+            for (let i = 0; i < pizza.length; i++) {
+                if (pizza[i].checked)
+                    selected_pizza = pizza[i].value;
+                if (selected_pizza == 'pizza1') {
+                    topping_pizza1_disabled();
+                    pizza_price = 8;
+                }
+                else if (selected_pizza == 'pizza2') {
+                    topping_pizza2_disabled();
+                    pizza_price = 10;
+                }
+                else if (selected_pizza == 'pizza3') {
+                    topping_pizza3_disabled();
+                    pizza_price = 12;
+                }
+            }
+
+            // find topping pizza and price
+            for (let i = 0; i < topping.length; i++) {
+                if (topping[i].checked) {
+                    topping_price = (topping[i].value).split('|', 2).slice(1);
+                    selected_topping += parseInt(topping_price);
+
+                }
+            }
+
+            // find size oizza
+            for (let i = 0; i < size.length; i++) {
+                if (size[i].checked)
+                    selected_size = size[i].value;
+            }
+
+            //show total price pizza
+            let pizza_topping = 0;
+            pizza_topping = parseInt(pizza_price) + parseInt(selected_topping);
+
+            var total = 0;
+            if (selected_size == 'large') {
+                total = pizza_topping + 2;
+                document.getElementById('price').innerHTML = '$' + total;
+                console.log(total);
+            } else if (selected_size == 'small') {
+                total = pizza_topping - 1;
+                document.getElementById('price').innerHTML = '$' + total;
+            } else
+                document.getElementById('price').innerHTML = '$' + pizza_topping;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: left;
+}
+
+p, .table td{
+    font-size: medium;
+}
+/* Pizza */
+.row {
+    display: flex;
+    grid-gap: 40px;
+}
+
+.col {
+    border: solid #000 4px;
+    flex: 30%;
+}
+
+.card {
+    padding: 20px;
+}
+
+.text {
+    text-align: center;
+    justify-content: center;
+}
+
+.col img {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    text-align: center;
+}
+.card p {
+    text-transform: uppercase;
+}
+.card-body p {
+    text-align: left;
+}
+
+/* Size */
+.radio-group {
+    text-align: center;
+}
+
+.radio {
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.radio label {
+    display: block;
+}
+
+/* Topping */
+table {
+    border-spacing: 40px 0;
+}
